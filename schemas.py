@@ -80,6 +80,10 @@ class UserResponse(UserBase):
     )
 
 
+# Alias for UserRead (same as UserResponse)
+UserRead = UserResponse
+
+
 class Token(BaseModel):
     """Schema for authentication token response."""
     access_token: str
