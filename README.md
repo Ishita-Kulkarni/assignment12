@@ -1,55 +1,121 @@
-# FastAPI User Management System
+# FastAPI Calculator with User Management & Authentication
 
-[![CI/CD](https://github.com/Ishita-Kulkarni/assignment10/workflows/FastAPI%20User%20Management%20CI/CD/badge.svg)](https://github.com/Ishita-Kulkarni/assignment10/actions)
+[![CI/CD](https://github.com/Ishita-Kulkarni/assignment12/workflows/FastAPI%20User%20Management%20CI/CD/badge.svg)](https://github.com/Ishita-Kulkarni/assignment12/actions)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com/)
-[![Coverage](https://img.shields.io/badge/coverage-75%25-yellowgreen.svg)](https://github.com/Ishita-Kulkarni/assignment10)
+[![Tests](https://img.shields.io/badge/tests-59%20passing-brightgreen.svg)](https://github.com/Ishita-Kulkarni/assignment12)
+[![Coverage](https://img.shields.io/badge/coverage-48%25-yellow.svg)](https://github.com/Ishita-Kulkarni/assignment12)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)](https://www.docker.com/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/)
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-Published-blue.svg)](https://hub.docker.com/r/ishitak0803/fastapi-user-management)
+[![JWT](https://img.shields.io/badge/JWT-Authentication-orange.svg)](https://jwt.io/)
 
-A production-ready FastAPI application featuring secure user management with SQLAlchemy, bcrypt password hashing, comprehensive testing (60 tests), and automated CI/CD pipeline with Docker Hub deployment.
+A production-ready FastAPI application featuring **JWT authentication**, **user management**, **calculator API with BREAD operations**, comprehensive integration testing (59 tests with database verification), and automated CI/CD pipeline with Docker Hub deployment.
 
 ## 🔗 Quick Links
 
-- **GitHub Repository**: https://github.com/Ishita-Kulkarni/assignment10
-- **Docker Hub Image**: https://hub.docker.com/r/ishitak0803/fastapi-user-management
-- **CI/CD Pipeline**: https://github.com/Ishita-Kulkarni/assignment10/actions
+- **GitHub Repository**: https://github.com/Ishita-Kulkarni/assignment12
+- **API Documentation**: http://localhost:8000/docs (when running locally)
+- **CI/CD Pipeline**: https://github.com/Ishita-Kulkarni/assignment12/actions
+- **Project Structure**: [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)
+
+## What's New in Assignment 12
+
+This project builds upon Assignment 11 with significant enhancements:
+
+✨ **Calculator API with BREAD Operations**
+- Full BREAD pattern implementation (Browse, Read, Edit, Add, Delete)
+- Calculation endpoints for all basic operations (add, subtract, multiply, divide)
+- User-specific calculation history
+- PUT and PATCH support for updates
+
+🔐 **JWT Token Authentication**
+- Token-based authentication system using python-jose
+- 30-minute token expiration
+- Protected endpoints requiring valid JWT tokens
+- Secure session management
+
+🧪 **Comprehensive Integration Testing**
+- **59 integration tests** (up from 18 in Assignment 11)
+- **Database verification** in all integration tests
+- Tests for all BREAD operations
+- Invalid data and error scenario testing
+- Complete test coverage for user + calculation APIs
+
+📁 **Improved Project Organization**
+- Clean folder structure with `examples/`, `data/`, `docs/`
+- Demo scripts moved to `examples/` directory
+- Database files properly excluded from git
+- Comprehensive documentation in `PROJECT_STRUCTURE.md`
+
+🚀 **Enhanced CI/CD**
+- PostgreSQL service in GitHub Actions
+- All 59 tests run on every commit
+- Automatic Docker image builds on successful tests
+- Multi-Python version testing (3.9-3.12)
 
 ## Features
 
-👥 **User Management System**
+🔐 **JWT Authentication & User Management**
 - User registration with email validation
 - Secure password hashing with bcrypt
-- User login and authentication
-- CRUD operations for user management
+- JWT token-based authentication (30-minute expiration)
+- User login with token generation
+- Protected endpoints requiring authentication
+- Full user CRUD operations
 - Unique username and email constraints
+
+🧮 **Calculator API (BREAD Operations)**
+- **Browse**: List all user's calculations with pagination
+- **Read**: Get specific calculation by ID
+- **Edit**: Update calculations (PUT/PATCH support)
+- **Add**: Create new calculations (add, subtract, multiply, divide)
+- **Delete**: Remove calculations
+- User isolation (users only see their own calculations)
+- Division by zero validation
+- Result calculation and persistence
 
 🔧 **API Backend**
 - RESTful API with FastAPI
-- SQLAlchemy ORM with PostgreSQL
-- Pydantic schemas for validation
-- Interactive API documentation (Swagger UI)
+- SQLAlchemy ORM with PostgreSQL/SQLite
+- Pydantic schemas for request/response validation
+- Interactive API documentation (Swagger UI & ReDoc)
 - Comprehensive logging system
+- Error handling with proper HTTP status codes
 
 🔒 **Security**
+- JWT token authentication (python-jose)
 - Bcrypt password hashing (bcrypt 4.0.1)
+- Token-based session management
 - Input validation with Pydantic
 - SQL injection prevention via SQLAlchemy
+- User data isolation
 - Environment variable configuration
+
+✅ **Testing & Quality**
+- **59 integration tests** (all passing)
+- **20 user API tests** with database verification
+- **39 calculation API tests** with BREAD coverage
+- Database verification in tests
+- Error scenario testing
+- Invalid data validation tests
+- 48% code coverage from integration tests
 
 🐳 **Docker & Database Integration**
 - Docker Compose setup with FastAPI + PostgreSQL + pgAdmin
-- PostgreSQL database for data persistence
+- PostgreSQL database for production
+- SQLite support for development/testing
 - pgAdmin for database management
 - Production-ready containerization
+- Multi-stage Docker builds
 
 🚀 **CI/CD Pipeline**
-- Automated testing on GitHub Actions
+- Automated testing on GitHub Actions with PostgreSQL
 - Multi-version Python testing (3.9-3.12)
-- Docker image builds and pushes to Docker Hub
-- Code coverage reporting with Codecov
-- Automated deployment on successful tests
+- All 59 integration tests run on each commit
+- Docker image builds and pushes to Docker Hub on success
+- Code coverage reporting
+- Linting with flake8
+- Automated deployment pipeline
 
 ## Quick Start with Docker
 
@@ -62,14 +128,14 @@ A production-ready FastAPI application featuring secure user management with SQL
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Ishita-Kulkarni/assignment10.git
-cd assignment10
+git clone https://github.com/Ishita-Kulkarni/assignment12.git
+cd assignment12/assignment12
 ```
 
 2. Configure environment variables:
 ```bash
 cp .env.example .env
-# Edit .env with your database credentials
+# Edit .env with your database credentials (or use SQLite default)
 ```
 
 3. Start all services with Docker Compose:
@@ -78,7 +144,8 @@ docker compose up --build
 ```
 
 4. Access the services:
-   - **API Documentation**: http://localhost:8000/docs
+   - **API Documentation (Swagger)**: http://localhost:8000/docs
+   - **API Documentation (ReDoc)**: http://localhost:8000/redoc
    - **pgAdmin**: http://localhost:5050
    - **PostgreSQL**: localhost:5432
 
@@ -93,19 +160,25 @@ docker compose up --build
 - Username: `calculator_user`
 - Password: `calculator_pass`
 
-### Pull from Docker Hub
+### Pull from Docker Hub (Optional)
 
-Instead of building locally, you can pull the pre-built image:
+Instead of building locally, you can pull the pre-built image (if available):
 
 ```bash
 # Pull the latest image from Docker Hub
-docker pull ishitak0803/fastapi-user-management:latest
+docker pull YOUR_DOCKERHUB_USERNAME/fastapi-calculator:latest
 
-# Run the container
+# Run the container with SQLite
+docker run -d -p 8000:8000 \
+  -e DATABASE_URL=sqlite:///./data/calculator.db \
+  --name fastapi-app \
+  YOUR_DOCKERHUB_USERNAME/fastapi-calculator:latest
+
+# Or run with PostgreSQL
 docker run -d -p 8000:8000 \
   -e DATABASE_URL=postgresql://calculator_user:calculator_pass@host.docker.internal:5432/calculator_db \
   --name fastapi-app \
-  ishitak0803/fastapi-user-management:latest
+  YOUR_DOCKERHUB_USERNAME/fastapi-calculator:latest
 
 # Check if it's running
 docker ps
@@ -117,12 +190,7 @@ docker logs fastapi-app
 open http://localhost:8000/docs
 ```
 
-**Docker Hub Repository**: https://hub.docker.com/r/ishitak0803/fastapi-user-management
-
-**Available Tags**:
-- `latest` - Most recent build from main branch
-- `main` - Latest main branch build
-- `main-<commit-sha>` - Specific commit builds
+> **Note**: Replace `YOUR_DOCKERHUB_USERNAME` with your Docker Hub username. Configure Docker Hub credentials in GitHub Secrets (`DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN`) to enable automated image pushes.
 
 ## Running Tests Locally
 
@@ -147,44 +215,310 @@ pytest --cov=. --cov-report=html --cov-report=term-missing
 open htmlcov/index.html  # On Linux: xdg-open htmlcov/index.html
 ```
 
-### Test Categories
+### Integration Tests (59 Tests)
+
+The project includes comprehensive integration tests that verify the API against a real database.
+
+#### Run All Integration Tests
 
 ```bash
-# Run user management tests only (60 tests)
-pytest tests/test_auth.py tests/test_schemas.py tests/test_models.py tests/test_users.py -v
+# Run all user and calculation integration tests
+pytest tests/test_users.py tests/test_calculations_api.py -v
 
-# Run authentication tests (12 tests)
-pytest tests/test_auth.py -v
-
-# Run schema validation tests (20 tests)
-pytest tests/test_schemas.py -v
-
-# Run model tests (10 tests)
-pytest tests/test_models.py -v
-
-# Run API integration tests (18 tests)
-pytest tests/test_users.py -v
-
-# Run specific test
-pytest tests/test_users.py::test_register_user -v
+# Expected output: 59 passed (20 user tests + 39 calculation tests)
 ```
 
-### Expected Results
+#### User Integration Tests (20 tests)
 
-✅ **60 tests** should pass  
-✅ **75% coverage** overall  
-✅ **100% coverage** on `auth.py`, `schemas.py`, `models.py`  
-✅ **93% coverage** on `users.py`  
+```bash
+# Run user integration tests
+pytest tests/test_users.py -v
+
+# What's tested:
+# ✓ User registration with DB verification
+# ✓ User login with JWT tokens and DB validation
+# ✓ Password hashing (bcrypt)
+# ✓ Duplicate username/email prevention
+# ✓ Email/password validation
+# ✓ User CRUD operations
+```
+
+#### Calculation Integration Tests (39 tests)
+
+```bash
+# Run calculation integration tests
+pytest tests/test_calculations_api.py -v
+
+# What's tested:
+# ✓ Create calculations with DB verification
+# ✓ Browse calculations (pagination, user isolation)
+# ✓ Read specific calculations
+# ✓ Update calculations (PUT/PATCH) with DB verification
+# ✓ Delete calculations with DB verification
+# ✓ Division by zero validation
+# ✓ Invalid data handling
+# ✓ Authentication requirements
+# ✓ Error responses (400, 401, 403, 404, 422)
+```
+
+#### Run Specific Test Categories
+
+```bash
+# Authentication tests (12 tests)
+pytest tests/test_auth.py -v
+
+# Schema validation tests (20 tests)
+pytest tests/test_schemas.py -v
+
+# Model tests (10 tests)
+pytest tests/test_models.py -v
+
+# Calculator operations tests (37 tests)
+pytest tests/test_operations.py -v
+
+# Run specific test function
+pytest tests/test_users.py::TestUserRegistration::test_register_user_db_verification -v
+```
+
+### Expected Test Results
+
+✅ **59 integration tests** should pass (20 user + 39 calculation)  
+✅ **48% coverage** from integration tests alone  
+✅ **100% coverage** on `schemas.py`  
+✅ **90% coverage** on `users.py`  
+✅ **80% coverage** on `calculations.py`  
 
 ### Test Output Example
 
 ```
-tests/test_auth.py ✓✓✓✓✓✓✓✓✓✓✓✓                    [ 20%]
-tests/test_schemas.py ✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓         [ 53%]
-tests/test_models.py ✓✓✓✓✓✓✓✓✓✓                    [ 70%]
-tests/test_users.py ✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓✓             [100%]
+tests/test_users.py::TestUserRegistration::test_register_user_success PASSED        [  1%]
+tests/test_users.py::TestUserRegistration::test_register_user_db_verification PASSED [  3%]
+tests/test_users.py::TestUserLogin::test_login_db_verification PASSED               [  5%]
+...
+tests/test_calculations_api.py::TestCalculationAdd::test_add_calculation_success PASSED
+tests/test_calculations_api.py::TestCalculationBrowse::test_browse_calculations_db_verification PASSED
+tests/test_calculations_api.py::TestInvalidDataAndErrors::test_division_by_zero_error_response PASSED
 
-==================== 60 passed in 2.5s ====================
+==================== 59 passed in 41.00s ====================
+```
+
+## Manual Testing via OpenAPI (Swagger UI)
+
+The application provides interactive API documentation where you can test all endpoints manually.
+
+### Access OpenAPI Documentation
+
+1. **Start the application**:
+   ```bash
+   # Using Docker Compose (recommended)
+   docker compose up
+   
+   # OR using uvicorn directly
+   uvicorn app.main:app --reload
+   ```
+
+2. **Open Swagger UI** in your browser:
+   - **Swagger UI**: http://localhost:8000/docs
+   - **ReDoc** (alternative): http://localhost:8000/redoc
+
+### Step-by-Step Manual Testing
+
+#### 1. Register a New User
+
+1. Open http://localhost:8000/docs
+2. Expand **POST /users/register**
+3. Click **"Try it out"**
+4. Enter request body:
+   ```json
+   {
+     "username": "testuser",
+     "email": "test@example.com",
+     "password": "password123"
+   }
+   ```
+5. Click **"Execute"**
+6. Verify response:
+   - Status Code: **201 Created**
+   - Response includes: `id`, `username`, `email`, `created_at`
+   - Password is NOT returned (security check ✓)
+
+#### 2. Login to Get JWT Token
+
+1. Expand **POST /users/login**
+2. Click **"Try it out"**
+3. Enter credentials:
+   ```json
+   {
+     "username": "testuser",
+     "password": "password123"
+   }
+   ```
+4. Click **"Execute"**
+5. Verify response:
+   - Status Code: **200 OK**
+   - Response includes: `access_token`, `token_type: "bearer"`
+6. **Copy the access_token** (you'll need it for protected endpoints)
+
+#### 3. Authorize Your Session
+
+1. Click the **"Authorize"** button (🔓 icon) at the top right
+2. Paste your token in the format: `Bearer YOUR_TOKEN_HERE`
+3. Click **"Authorize"**
+4. Click **"Close"**
+5. Now all requests will include authentication!
+
+#### 4. Test Protected Endpoint - Get Current User
+
+1. Expand **GET /users/me**
+2. Click **"Try it out"** → **"Execute"**
+3. Verify response:
+   - Status Code: **200 OK**
+   - Returns your user information
+
+#### 5. Create a Calculation
+
+1. Expand **POST /calculations**
+2. Click **"Try it out"**
+3. Enter calculation:
+   ```json
+   {
+     "a": 10.5,
+     "b": 5.2,
+     "type": "add"
+   }
+   ```
+4. Click **"Execute"**
+5. Verify response:
+   - Status Code: **201 Created**
+   - Response includes: `id`, `result: 15.7`, `user_id`
+6. **Copy the calculation ID** for next steps
+
+#### 6. Browse All Your Calculations
+
+1. Expand **GET /calculations**
+2. Click **"Try it out"** → **"Execute"**
+3. Verify response:
+   - Status Code: **200 OK**
+   - Returns array of your calculations
+   - Ordered by creation date (newest first)
+
+#### 7. Read a Specific Calculation
+
+1. Expand **GET /calculations/{id}**
+2. Enter the calculation ID from step 5
+3. Click **"Execute"**
+4. Verify response:
+   - Status Code: **200 OK**
+   - Returns the specific calculation
+
+#### 8. Update a Calculation (PUT)
+
+1. Expand **PUT /calculations/{id}**
+2. Enter the calculation ID
+3. Enter new values:
+   ```json
+   {
+     "a": 20,
+     "b": 4,
+     "type": "multiply"
+   }
+   ```
+4. Click **"Execute"**
+5. Verify response:
+   - Status Code: **200 OK**
+   - Result updated to: **80** (20 × 4)
+
+#### 9. Partial Update (PATCH)
+
+1. Expand **PATCH /calculations/{id}**
+2. Enter the calculation ID
+3. Update only one field:
+   ```json
+   {
+     "b": 5
+   }
+   ```
+4. Click **"Execute"**
+5. Verify response:
+   - Previous values preserved (`a: 20`, `type: multiply`)
+   - Only `b` changed to 5
+   - Result recalculated to: **100** (20 × 5)
+
+#### 10. Delete a Calculation
+
+1. Expand **DELETE /calculations/{id}**
+2. Enter the calculation ID
+3. Click **"Execute"**
+4. Verify response:
+   - Status Code: **200 OK**
+   - Message: "Calculation X deleted successfully"
+5. Try to GET the same calculation:
+   - Status Code: **404 Not Found**
+
+### Test Error Scenarios
+
+#### Division by Zero
+
+1. Expand **POST /calculations**
+2. Try creating:
+   ```json
+   {
+     "a": 10,
+     "b": 0,
+     "type": "divide"
+   }
+   ```
+3. Verify response:
+   - Status Code: **422 Unprocessable Entity**
+   - Error message about division by zero
+
+#### Invalid Operation Type
+
+1. Try creating with invalid type:
+   ```json
+   {
+     "a": 10,
+     "b": 5,
+     "type": "power"
+   }
+   ```
+2. Verify response:
+   - Status Code: **422 Unprocessable Entity**
+   - Validation error
+
+#### Authentication Required
+
+1. Click **"Authorize"** → **"Logout"**
+2. Try **POST /calculations** without authentication
+3. Verify response:
+   - Status Code: **403 Forbidden**
+
+### Automated Manual Testing Script
+
+For quick verification, run the automated manual test script:
+
+```bash
+# Ensure server is running first
+uvicorn app.main:app --reload
+
+# In another terminal, run the test script
+python examples/test_api_manual.py
+```
+
+**Expected output**:
+```
+🧪 TEST 1: Register User (POST /users/register)
+✅ PASS: User registered successfully
+
+🧪 TEST 2: Login User (POST /users/login)
+✅ PASS: User logged in, token received
+
+🧪 TEST 3: Get Current User (GET /users/me)
+✅ PASS: Current user retrieved
+
+... (13 tests total)
+
+🎉 ALL TESTS PASSED!
 ```
 
 ### Troubleshooting Tests
@@ -711,55 +1045,54 @@ Example platforms:
 
 ## Project Structure
 
+> **📁 Detailed structure documentation**: See [PROJECT_STRUCTURE.md](./PROJECT_STRUCTURE.md)
+
 ```
-assignment10/
-├── app/                        # Application package
-│   ├── __init__.py             # Package initializer
+assignment12/
+├── app/                        # Application code
+│   ├── auth.py                 # JWT authentication & password hashing
+│   ├── calculations.py         # Calculation BREAD endpoints
+│   ├── database.py             # Database configuration
 │   ├── main.py                 # FastAPI application entry point
-│   ├── database.py             # SQLAlchemy database configuration
-│   ├── models.py               # User SQLAlchemy model
+│   ├── models.py               # User & Calculation models
+│   ├── operations.py           # Calculator operations
 │   ├── schemas.py              # Pydantic validation schemas
-│   ├── auth.py                 # Password hashing utilities
-│   ├── users.py                # User management router
-│   ├── operations.py           # Calculator operation functions
-│   └── logger_config.py        # Logging configuration
-├── tests/                      # Test suite
-│   ├── __init__.py
-│   ├── README.md               # Test documentation
-│   ├── test_auth.py            # Password hashing tests (12 tests)
-│   ├── test_schemas.py         # Pydantic schema tests (20 tests)
-│   ├── test_models.py          # SQLAlchemy model tests (10 tests)
-│   ├── test_users.py           # User API integration tests (18 tests)
-│   ├── test_operations.py      # Calculator tests (37 tests)
-│   ├── test_main.py            # Calculator API tests (37 tests)
-│   ├── test_logging.py         # Logging tests (26 tests)
-│   └── test_e2e.py             # End-to-end tests (Playwright)
+│   └── users.py                # User management endpoints
+├── tests/                      # Test suite (59 integration tests)
+│   ├── test_auth.py            # Authentication tests
+│   ├── test_calculations.py    # Calculation logic tests
+│   ├── test_calculations_api.py # Calculation API tests (39 tests)
+│   ├── test_models.py          # Database model tests
+│   ├── test_operations.py      # Calculator operation tests
+│   ├── test_schemas.py         # Schema validation tests
+│   ├── test_users.py           # User API tests (20 tests)
+│   └── ...                     # Additional test files
+├── examples/                   # Demo scripts & examples
+│   ├── demo_user_endpoints.py  # User API demo
+│   ├── test_api_manual.py      # Manual API testing
+│   └── test_jwt_token.py       # JWT testing utility
 ├── docs/                       # Documentation
 │   ├── CI_CD_SETUP.md          # CI/CD setup guide
-│   ├── QUICK_REFERENCE.md      # Quick command reference
-│   ├── SETUP_CHECKLIST.md      # Setup checklist
-│   └── LOGGING.md              # Logging documentation
+│   ├── LOGGING.md              # Logging documentation
+│   └── ...                     # Additional documentation
+├── data/                       # Local database files (gitignored)
 ├── scripts/                    # Utility scripts
-│   ├── run_tests.sh            # Test runner script
-│   └── ci_check.sh             # CI validation script
-├── static/                     # Static files
-│   └── index.html              # Calculator web UI (legacy)
-├── logs/                       # Log files directory
-│   ├── app.log                 # Application logs
-│   └── error.log               # Error logs
-├── .github/
-│   └── workflows/
-│       └── ci.yml              # CI/CD pipeline configuration
+├── .github/workflows/          # CI/CD pipelines
+│   └── ci.yml                  # Main CI/CD with PostgreSQL
+├── Dockerfile                  # Docker image definition
+├── docker-compose.yml          # Multi-container setup
 ├── requirements.txt            # Production dependencies
-├── requirements-test.txt       # Test dependencies
-├── pyproject.toml              # Pytest configuration
-├── Dockerfile                  # Docker container configuration
-├── docker-compose.yml          # Multi-container orchestration
-├── .env.example                # Environment variables template
-├── .dockerignore               # Docker build exclusions
-├── .gitignore                  # Git exclusions
-└── README.md                   # This file
+├── requirements-test.txt       # Testing dependencies
+└── PROJECT_STRUCTURE.md        # Detailed structure documentation
 ```
+
+**Key Changes from Assignment 11**:
+- ✨ Added `calculations.py` with full BREAD operations
+- ✨ Added JWT authentication in `auth.py`
+- ✨ Enhanced test suite (59 tests with DB verification)
+- ✨ Organized demo scripts in `examples/`
+- ✨ Added `data/` directory for local databases
+- ✨ Improved CI/CD with Docker Hub integration
 
 ## Environment Variables
 
@@ -768,27 +1101,39 @@ The application uses environment variables for configuration. Copy `.env.example
 ### Required Variables
 
 ```bash
-# Database Configuration
+# Database Configuration (choose one)
+# For SQLite (development/testing)
+DATABASE_URL=sqlite:///./data/calculator.db
+
+# For PostgreSQL (production)
 DATABASE_URL=postgresql://calculator_user:calculator_pass@db:5432/calculator_db
 
-# PostgreSQL Configuration
+# PostgreSQL Configuration (if using PostgreSQL)
 POSTGRES_USER=calculator_user
 POSTGRES_PASSWORD=calculator_pass
 POSTGRES_DB=calculator_db
+```
+
+### Security Variables
+
+```bash
+# JWT Secret Key (REQUIRED - generate a secure random string)
+SECRET_KEY=your-secret-key-here-replace-in-production
+
+# JWT Algorithm
+ALGORITHM=HS256
+
+# JWT Token Expiration (in minutes)
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
 
 ### Optional Variables
 
 ```bash
 # Application Configuration
-APP_NAME=FastAPI User Management
+APP_NAME=FastAPI Calculator
 APP_VERSION=1.0.0
 DEBUG=False
-
-# Security (for future JWT implementation)
-SECRET_KEY=your-secret-key-here
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 # CORS Configuration
 ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8000
@@ -796,10 +1141,20 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:8000
 
 ### Docker Hub Variables (CI/CD only)
 
-Set these as **GitHub Secrets**, not in `.env`:
+Set these as **GitHub Secrets** (not in `.env`):
 ```bash
 DOCKERHUB_USERNAME=your-dockerhub-username
 DOCKERHUB_TOKEN=your-dockerhub-access-token
+```
+
+### Generating a Secure Secret Key
+
+```bash
+# Python method
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+
+# OpenSSL method
+openssl rand -hex 32
 ```
 
 ## Security Best Practices

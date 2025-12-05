@@ -23,8 +23,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 # Copy application code
 COPY . .
 
-# Create logs directory
-RUN mkdir -p logs
+# Create necessary directories
+RUN mkdir -p logs data
 
 # Expose port
 EXPOSE 8000

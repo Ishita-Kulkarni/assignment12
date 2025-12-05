@@ -1,10 +1,77 @@
-# Calculation Model Examples
+# Examples and Demo Scripts
 
-This directory contains example code demonstrating how to use the Calculation model, factory pattern, and API endpoints.
+This directory contains example code, demo scripts, and manual testing utilities for the FastAPI Calculator application.
 
 ## Files
 
-### 1. `factory_usage_examples.py`
+### API Examples
+
+#### 1. `calculations_api.py`
+Example REST API endpoints for the Calculation model.
+
+**What it demonstrates:**
+- BREAD operations (Browse, Read, Edit, Add, Delete)
+- Request/response schemas
+- Error handling
+- API integration patterns
+
+#### 2. `demo_user_endpoints.py`
+Interactive demonstration of user management endpoints.
+
+**What it demonstrates:**
+- User registration and login
+- JWT token authentication
+- Protected endpoint access
+- User CRUD operations
+- Error handling and validation
+
+**How to run:**
+```bash
+# Start the server first
+uvicorn app.main:app --reload
+
+# In another terminal, run the demo
+python examples/demo_user_endpoints.py
+```
+
+### Testing Utilities
+
+#### 3. `test_api_manual.py`
+Comprehensive manual API testing script.
+
+**What it tests:**
+- User registration and login
+- JWT token validation
+- All calculation BREAD operations
+- Error responses and status codes
+- Data validation
+
+**How to run:**
+```bash
+# Ensure server is running
+uvicorn app.main:app --reload
+
+# Run manual tests
+python examples/test_api_manual.py
+```
+
+#### 4. `test_jwt_token.py`
+JWT token creation and validation testing.
+
+**What it demonstrates:**
+- Token generation
+- Token decoding
+- Expiration handling
+- Authentication flow
+
+**How to run:**
+```bash
+python examples/test_jwt_token.py
+```
+
+### Factory Pattern Examples
+
+#### 5. `factory_usage_examples.py`
 Complete examples of using the CalculationFactory pattern.
 
 **What it demonstrates:**

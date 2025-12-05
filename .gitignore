@@ -43,6 +43,12 @@ Thumbs.db
 .coverage
 htmlcov/
 
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+data/
+
 # Environment variables
 .env
 
